@@ -1,19 +1,19 @@
 class Solution {
     public int firstUniqChar(String s) {
-      int[] freq = new int[26]; // Since only lowercase letters are used
+         Map<Character, Integer> charCount = new HashMap<>();
 
         // Step 1: Count character frequency
         for (char ch : s.toCharArray()) {
-            freq[ch - 'a']++;
+            charCount.put(ch, charCount.getOrDefault(ch, 0) + 1);
         }
 
         // Step 2: Find the first character with frequency 1
         for (int i = 0; i < s.length(); i++) {
-            if (freq[s.charAt(i) - 'a'] == 1) {
+            if (charCount.get(s.charAt(i)) == 1) {
                 return i;
             }
         }
 
-        return -1;
+        return -1; // No unique character found 
     }
 }
